@@ -1,0 +1,13 @@
+app_name = rigpl_erpnext
+app_title = Rohit ERPNext Extensions
+app_publisher = Rohit Industries Ltd.
+app_description = Rohit ERPNext Extensions
+app_icon = icon-paper-clip
+app_color = #007AFF
+app_email = aditya@rigpl.com
+app_url = https://github.com/adityaduggal/custom_erpnext
+app_version = 0.0.1
+
+bean_event:Item:validate = rigpl_erpnext.rigpl_erpnext.item.validate
+bean_event:Item:before_set_name = rigpl_erpnext.rigpl_erpnext.item.generate_item_code
+bean_event:Quality:autoname = rigpl_erpnext.rigpl_erpnext.quality.autoname
