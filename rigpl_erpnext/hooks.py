@@ -113,9 +113,6 @@ doc_events = {
 	"Price List":{
 		"validate": "rigpl_erpnext.rigpl_erpnext.validations.price_list.validate"
 	},
-	"Production Order":{
-		"validate": "rigpl_erpnext.rigpl_erpnext.validations.production_order.validate"
-	},
 	"Purchase Order":{
 		"validate": "rigpl_erpnext.rigpl_erpnext.validations.purchase_order.validate",
 		"on_submit": "rigpl_erpnext.rigpl_erpnext.validations.purchase_order.on_submit",
@@ -171,6 +168,9 @@ doc_events = {
 	"Warehouse":{
 		"validate": "rigpl_erpnext.rigpl_erpnext.validations.warehouse.validate"
 	},
+	"Work Order":{
+		"validate": "rigpl_erpnext.rigpl_erpnext.validations.work_order.validate"
+	},
 }
 
 # Scheduled Tasks
@@ -181,7 +181,8 @@ scheduler_events = {
 # 		"rigpl_erpnext.rigpl_erpnext.scheduled_tasks.communication.daily"
 # 	],
  	"daily": [
- 		"rigpl_erpnext.rigpl_erpnext.scheduled_tasks.permission_check.check_permission_exist"
+ 		"rigpl_erpnext.rigpl_erpnext.scheduled_tasks.permission_check.check_permission_exist",
+ 		"rigpl_erpnext.rigpl_erpnext.scheduled_tasks.work_order_status.execute"
  	],
  	"hourly": [
  		"rigpl_erpnext.rigpl_erpnext.scheduled_tasks.communication.daily",
