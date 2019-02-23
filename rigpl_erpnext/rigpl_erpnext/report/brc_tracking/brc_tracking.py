@@ -44,7 +44,7 @@ def get_data(filters):
 			brc.bank_ifsc_code, brc.customer_or_supplier_name, brc.reference_name, si.posting_date,
 			brc.brc_status, brc.brc_number, brc.brc_date,  
 			DATEDIFF(IFNULL(brc.brc_date, CURDATE()), brc.shipping_bill_date),
-			si.base_net_total, brc.grand_total, brc.reference_currency, brc.brc_realised_value,
+			si.base_net_total, brc.grand_total, brc.brc_realised_value, brc.reference_currency, 
 			brc.brc_bill_id, brc.notes, brc.export_or_import, brc.export_invoice_number,
 			brc.reference_doctype, brc.customer_or_supplier
 			FROM `tabBRC MEIS Tracking` brc, `tabSales Invoice` si
@@ -80,11 +80,8 @@ def get_conditions(filters):
 		if filters.get("meis_status") != "All MEIS":
 			conditions += " AND brc.meis_status = '%s'" %filters["meis_status"]
 
-	if filters.get("docstatus"):
-		if filters.get("brc.docstatus") == "Draft":
-			conditions += " AND brc.docstatus = 0"
-		else:
-			conditions += " AND brc.docstatus = 1"
+	if filters.get("docstatus") == "Submitted":
+		conditions += " AND brc.docstatus = 1"
 	else:
 		conditions += " AND brc.docstatus = 0"
 	return conditions
