@@ -77,6 +77,7 @@ def get_indiamart_leads():
 		make_or_update_lead(parsed_response, from_date_txt, to_date_txt, last_execution, last_link)
 
 	update_db(from_date_txt, to_date_txt, last_execution, last_link, total_leads)
+	update_lead_global_search()
 	print('Done')
 
 def update_db(frm_dt_txt, to_dt_txt, lst_exe_dt, last_link, total_leads=0):
@@ -139,9 +140,10 @@ def make_or_update_lead(parsed_response, frm_dt_txt, to_dt_txt, lst_exe_dt, last
 			ld.remark = str(lead.get('SUBJECT')) + " " + str(lead.get('ENQ_MESSAGE'))
 			ld.save()
 			print("Created New Lead# " + ld.name)
+			frappe.db.commit()
 			lead_doc = frappe.get_doc("Lead", ld.name)
 			update_global_search(lead_doc)
-			update_lead_global_search()
+			#update_lead_global_search()
 
 def get_im_reply(from_date, to_date):
 	print(from_date)
